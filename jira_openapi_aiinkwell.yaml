@@ -23,3 +23,28 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  issues:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        key:
+                          type: string
+                        fields:
+                          type: object
+                          properties:
+                            summary:
+                              type: string
+                            status:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                            assignee:
+                              type: object
+                              properties:
+                                displayName:
+                                  type: string
