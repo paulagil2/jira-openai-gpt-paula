@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Jira Issue Search
+  title: Jira Issue Search and Project List
   version: 1.0.0
 servers:
   - url: https://aiinkwell-team.atlassian.net/rest/api/3
@@ -23,11 +23,17 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - issues
                 properties:
                   issues:
                     type: array
                     items:
                       type: object
+                      required:
+                        - id
+                        - key
+                        - fields
                       properties:
                         id:
                           type: string
@@ -48,3 +54,24 @@ paths:
                               properties:
                                 displayName:
                                   type: string
+
+  /project:
+    get:
+      summary: List Jira projects
+      operationId: listJiraProjects
+      responses:
+        '200':
+          description: A list of available projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    key:
+                      type: string
+                    name:
+                      type: string
